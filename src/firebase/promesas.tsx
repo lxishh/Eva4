@@ -74,3 +74,16 @@ export const eliminarPersona = async (key: string) => {
   const ref = doc(db, "persona", key);
   await deleteDoc(ref);
 };
+
+export const verificarUsuario = async (username: string, password: string) => {
+  const querySnapshot = await getDocs(collection(db, "usuarios"));
+  let eUsuario = false;
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    if (data.username === username && data.password === password) {
+      eUsuario = true;
+    }
+  });
+  return eUsuario;
+};

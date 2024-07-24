@@ -21,7 +21,7 @@ export const menu = () => {
                 Visualizar registros de socios
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/menu/usuarios">
+              <ListGroup.Item action href="/">
                 Salir
               </ListGroup.Item>
             </ListGroup>
