@@ -15,25 +15,43 @@ import { registrarSocio } from "@/firebase/promesas";
 export const rSocio = () => {
   const [socio, setSocio] = useState<Socio>(initialStateSocio);
 
-  // const handleSocio = (name: string, value: string | boolean) => {
-  //   setSocio({ ...socio, [name]: value });
-  // };
-
-  const handleSocio = (name: string, value: any) => {
-    if (name === "terminos") {
-      setSocio({ ...socio, [name]: value === "on" ? true : false });
-    } else {
-      setSocio({ ...socio, [name]: value });
-    }
+  const handleSocio = (name: string, value: string | boolean) => {
+    setSocio({ ...socio, [name]: value });
   };
 
+  // const handleRegistrar = (event: React.FormEvent) => {
+  //   event.preventDefault();
+
+  //   const { nombre, correo, contrasenia, telefono, terminos } = socio;
+  //   if (!nombre || !correo || !contrasenia || !telefono || !terminos) {
+  //     alert("Por favor, complete todos los campos obligatorios.");
+  //     return;
+  //   }
+
+  //   registrarSocio(socio)
+  //     .then(() => {
+  //       alert("Registrado con éxito!");
+  //     })
+  //     .catch((e) => {
+  //       alert("Algo ocurrió");
+  //       console.log(e);
+  //     });
+  // };
+
   const handleRegistrar = () => {
+    const { nombre, correo, contrasenia, telefono, terminos } = socio;
+    if (!nombre || !correo || !contrasenia || !telefono || !terminos) {
+      alert("Por favor, complete todos los campos obligatorios.");
+      return;
+    }
+
     registrarSocio(socio)
       .then(() => {
-        alert("Registrado con exito!");
+        alert("Registrado con éxito!");
+        window.location.reload();
       })
       .catch((e) => {
-        alert("Algo ocurrio");
+        alert("Algo ocurrió");
         console.log(e);
       });
   };
@@ -53,10 +71,10 @@ export const rSocio = () => {
                   type="text"
                   placeholder="Ingresa tu nombre"
                   name="nombre"
+                  required
                   onChange={(e) => {
                     handleSocio(e.currentTarget.name, e.currentTarget.value);
                   }}
-                  required
                 />
               </Form.Group>
 
@@ -66,10 +84,10 @@ export const rSocio = () => {
                   type="email"
                   placeholder="Ingresa tu correo"
                   name="correo"
+                  required
                   onChange={(e) => {
                     handleSocio(e.currentTarget.name, e.currentTarget.value);
                   }}
-                  required
                 />
               </Form.Group>
 
@@ -79,10 +97,10 @@ export const rSocio = () => {
                   type="password"
                   placeholder="Ingresa tu contraseña"
                   name="contrasenia"
+                  required
                   onChange={(e) => {
                     handleSocio(e.currentTarget.name, e.currentTarget.value);
                   }}
-                  required
                 />
               </Form.Group>
 
@@ -118,7 +136,9 @@ export const rSocio = () => {
                   onChange={(e) => {
                     handleSocio(e.currentTarget.name, e.currentTarget.value);
                   }}
+                  value={socio.genero}
                 >
+                  <option value=""></option>
                   <option value="Masculino">Masculino</option>
                   <option value="Femenino">Femenino</option>
                   <option value="No especifica">No especifica</option>
@@ -143,10 +163,10 @@ export const rSocio = () => {
                   name="terminos"
                   label="Acepta términos y condiciones*"
                   checked={socio.terminos}
-                  onChange={(e) => {
-                    handleSocio(e.currentTarget.name, e.currentTarget.value);
-                  }}
                   required
+                  onChange={(e) => {
+                    handleSocio(e.currentTarget.name, e.currentTarget.checked);
+                  }}
                 />
               </Form.Group>
 

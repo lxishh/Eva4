@@ -4,8 +4,10 @@ import { Socio } from "@/interfaces/interfaces";
 export const initialStateSocio: Socio = {
   nombre: "",
   correo: "",
+  contrasenia: "",
   telefono: "",
   fechaNacimiento: "",
   biografia: "",
+  genero: "",
   terminos: false,
 };

@@ -17,7 +17,7 @@ export const menu = () => {
                 Registrar nuevo socio
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/menu/tabla">
+              <ListGroup.Item action href="/menu/tablaSocios">
                 Visualizar registros de socios
               </ListGroup.Item>
 

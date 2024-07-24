@@ -14,23 +14,25 @@ export const registrarSocio = async (socio: Socio) => {
   const docRef = await addDoc(collection(db, "socios"), socio);
 };
 
-export const obtenerPersonas = async () => {
-  const querySnapshot = await getDocs(collection(db, "persona"));
-  let personas: Persona[] = [];
+export const obtenerSocios = async () => {
+  const querySnapshot = await getDocs(collection(db, "socios"));
+  let socios: Socio[] = [];
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    let persona: Persona = {
-      apellido: doc.data().apellido,
+    let socio: Socio = {
       nombre: doc.data().nombre,
       correo: doc.data().correo,
-      edad: doc.data().edad,
-      rut: doc.data().rut,
+      contrasenia: doc.data().contrasenia,
+      telefono: doc.data().telefono,
       fechaNacimiento: doc.data().fechaNacimiento,
+      genero: doc.data().genero,
+      biografia: doc.data().biografia,
+      terminos: doc.data().terminos,
       key: doc.id,
     };
-    personas.push(persona);
+    socios.push(socio);
   });
-  return personas;
+  return socios;
 };
 
 export const obtenerPersona = async (key: string) => {
