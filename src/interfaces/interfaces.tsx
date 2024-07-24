@@ -1,10 +1,9 @@
-
-export interface Persona{
-    nombre:string,
-    apellido:string,
-    rut:string,
-    fechaNacimiento:string,
-    edad:number,
-    correo:string,
-    key?:string
+export interface Socio {
+  nombre: string;
+  correo: string;
+  telefono: string;
+  fechaNacimiento?: string;
+  biografia?: string;
+  terminos: boolean;
+  key?: string;
 }

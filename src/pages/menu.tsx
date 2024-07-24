@@ -9,11 +9,11 @@ export const menu = () => {
         <Row>
           <Col>
             <ListGroup>
-              <ListGroup.Item action href="/menu/usuarios">
+              <ListGroup.Item action href="/menu/rUsuario">
                 Registrar nuevo usuario
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/menu/socios">
+              <ListGroup.Item action href="/menu/rSocio">
                 Registrar nuevo socio
               </ListGroup.Item>
 
