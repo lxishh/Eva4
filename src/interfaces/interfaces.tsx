@@ -9,3 +9,8 @@ export interface Socio {
   terminos: boolean;
   key?: string;
 }
+
+export interface Usuario {
+  username: string;
+  password: string;
+}

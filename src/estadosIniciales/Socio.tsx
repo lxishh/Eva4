@@ -1,4 +1,4 @@
-import { Socio } from "@/interfaces/interfaces";
+import { Socio, Usuario } from "@/interfaces/interfaces";
 
 // Definir dato con el que inician las variables
 export const initialStateSocio: Socio = {
@@ -10,4 +10,9 @@ export const initialStateSocio: Socio = {
   biografia: "",
   genero: "",
   terminos: false,
+};
+
+export const initialStateUsuario: Usuario = {
+  username: "",
+  password: "",
 };

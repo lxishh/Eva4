@@ -1,4 +1,4 @@
-import { Socio } from "@/interfaces/interfaces";
+import { Socio, Usuario } from "@/interfaces/interfaces";
 import {
   addDoc,
   collection,
@@ -86,4 +86,8 @@ export const verificarUsuario = async (username: string, password: string) => {
     }
   });
   return eUsuario;
+};
+
+export const registrarUsuario = async (usuario: Usuario) => {
+  const docRef = await addDoc(collection(db, "usuarios"), usuario);
 };
