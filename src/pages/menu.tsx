@@ -1,0 +1,35 @@
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import ListGroup from "react-bootstrap/ListGroup";
+
+export const menu = () => {
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <ListGroup>
+              <ListGroup.Item action href="/menu/usuarios">
+                Registrar nuevo usuario
+              </ListGroup.Item>
+
+              <ListGroup.Item action href="/menu/socios">
+                Registrar nuevo socio
+              </ListGroup.Item>
+
+              <ListGroup.Item action href="/menu/tabla">
+                Visualizar registros de socios
+              </ListGroup.Item>
+
+              <ListGroup.Item action href="/menu/usuarios">
+                Salir
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default menu;
