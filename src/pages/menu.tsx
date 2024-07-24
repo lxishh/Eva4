@@ -1,27 +1,38 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export const menu = () => {
+  const router = useRouter();
   return (
     <>
       <Container>
         <Row>
           <Col>
             <ListGroup>
-              <ListGroup.Item action href="/menu/rUsuario">
+              <ListGroup.Item
+                action
+                onClick={() => router.push("/menu/rUsuario")}
+              >
                 Registrar nuevo usuario
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/menu/rSocio">
+              <ListGroup.Item
+                action
+                onClick={() => router.push("/menu/rSocio")}
+              >
                 Registrar nuevo socio
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/menu/tablaSocios">
+              <ListGroup.Item
+                action
+                onClick={() => router.push("/menu/tablaSocios")}
+              >
                 Visualizar registros de socios
               </ListGroup.Item>
 
-              <ListGroup.Item action href="/">
+              <ListGroup.Item action onClick={() => router.push("/")}>
                 Salir
               </ListGroup.Item>
             </ListGroup>

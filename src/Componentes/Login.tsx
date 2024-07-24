@@ -1,10 +1,12 @@
 import { verificarUsuario } from "@/firebase/promesas";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
@@ -12,8 +14,10 @@ export const Login = () => {
 
       if (eUsuario) {
         console.log("Usuario encontrado.");
+        router.push("/menu");
       } else {
         console.log("Nombre de usuario o contraseña incorrectos");
+        alert("Nombre de usuario o contraseña invalidos");
       }
     } catch {
       console.log("Error");
