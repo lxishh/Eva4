@@ -1,7 +1,7 @@
 import { eliminarSocio, obtenerSocios } from "@/firebase/promesas";
 import { Socio } from "@/interfaces/interfaces";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Container, Row, Col, Modal } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -22,15 +22,35 @@ export const tablaSocios = () => {
       });
   }, []);
 
-  const handleEliminar = async (key: string) => {
-    try {
-      await eliminarSocio(key);
-      setSocios(socios.filter((socio) => socio.key !== key));
-      alert("Eliminado con éxito");
-    } catch (error) {
-      console.error("Error al eliminar la persona: ", error);
-      alert("No se pudo eliminar la persona");
+  const [showModal, setShowModal] = useState(false);
+  const [keyToDelete, setKeyToDelete] = useState<string | null>(null);
+
+  // Mostrar modal y guardar clave del registro a eliminar
+  const handleEliminar = (key: string) => {
+    setKeyToDelete(key);
+    setShowModal(true);
+  };
+
+  // Confirmar la eliminación del registro
+  const confirmarEliminacion = async () => {
+    if (keyToDelete) {
+      try {
+        await eliminarSocio(keyToDelete); // Elimina el socio
+      } catch (error) {
+        console.error("Error al eliminar el socio: ", error);
+        alert("No se pudo eliminar el socio");
+      } finally {
+        setShowModal(false);
+        setKeyToDelete(null);
+        window.location.reload();
+      }
     }
+  };
+
+  // Cancelar la eliminación y ocultar el modal
+  const cancelarEliminacion = () => {
+    setShowModal(false);
+    setKeyToDelete(null);
   };
 
   return (
@@ -79,6 +99,29 @@ export const tablaSocios = () => {
                         >
                           <MdDelete />
                         </Button>
+                        {/* Modal */}
+                        <Modal show={showModal} onHide={cancelarEliminacion}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Confirmar Eliminación</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            ¿Estás seguro de que deseas eliminar a {p.nombre}?
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button
+                              variant="secondary"
+                              onClick={cancelarEliminacion}
+                            >
+                              Cancelar
+                            </Button>
+                            <Button
+                              variant="primary"
+                              onClick={confirmarEliminacion}
+                            >
+                              Confirmar
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
                       </td>
                     </tr>
                   );
