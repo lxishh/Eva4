@@ -25,8 +25,8 @@ export const tablaSocios = () => {
   const handleEliminar = async (key: string) => {
     try {
       await eliminarSocio(key);
-      // Eliminar la persona de la lista localmente para evitar una nueva llamada a la base de datos
       setSocios(socios.filter((socio) => socio.key !== key));
+      alert("Eliminado con éxito");
     } catch (error) {
       console.error("Error al eliminar la persona: ", error);
       alert("No se pudo eliminar la persona");

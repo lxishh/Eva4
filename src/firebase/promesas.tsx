@@ -60,7 +60,7 @@ export const obtenerSocio = async (key: string) => {
 export const modificarSocio = async (socio: Socio) => {
   const ref = doc(collection(db, "socios"), socio.key);
   // con key incluida
-  // await updateDoc(ref,{...persona})
+  // await updateDoc(ref,{...socios})
   // sin key
   await updateDoc(ref, {
     nombre: socio.nombre,
@@ -74,7 +74,7 @@ export const modificarSocio = async (socio: Socio) => {
 };
 
 export const eliminarSocio = async (key: string) => {
-  const ref = doc(db, "persona", key);
+  const ref = doc(db, "socios", key);
   await deleteDoc(ref);
 };
 
