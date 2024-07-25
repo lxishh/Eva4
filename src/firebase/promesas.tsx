@@ -35,42 +35,45 @@ export const obtenerSocios = async () => {
   return socios;
 };
 
-export const obtenerPersona = async (key: string) => {
-  const docRef = doc(db, "persona", key);
+export const obtenerSocio = async (key: string) => {
+  const docRef = doc(db, "socios", key);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    let persona: Persona = {
-      apellido: docSnap.data().apellido,
+    let socio: Socio = {
       nombre: docSnap.data().nombre,
       correo: docSnap.data().correo,
-      edad: docSnap.data().edad,
-      rut: docSnap.data().rut,
+      contrasenia: docSnap.data().contrasenia,
+      telefono: docSnap.data().telefono,
       fechaNacimiento: docSnap.data().fechaNacimiento,
+      genero: docSnap.data().genero,
+      biografia: docSnap.data().biografia,
+      terminos: docSnap.data().terminos,
       key: docSnap.id,
     };
-    return persona;
+    return socio;
   } else {
     return undefined;
   }
 };
 
-export const modificarPersona = async (persona: Persona) => {
-  const ref = doc(collection(db, "persona"), persona.key);
+export const modificarSocio = async (socio: Socio) => {
+  const ref = doc(collection(db, "socios"), socio.key);
   // con key incluida
   // await updateDoc(ref,{...persona})
   // sin key
   await updateDoc(ref, {
-    nombre: persona.nombre,
-    apellido: persona.apellido,
-    rut: persona.rut,
-    edad: persona.edad,
-    fechaNacimiento: persona.fechaNacimiento,
-    correo: persona.correo,
+    nombre: socio.nombre,
+    correo: socio.correo,
+    contrasenia: socio.contrasenia,
+    telefono: socio.telefono,
+    fechaNacimiento: socio.fechaNacimiento,
+    genero: socio.genero,
+    biografia: socio.biografia,
   });
 };
 
-export const eliminarPersona = async (key: string) => {
+export const eliminarSocio = async (key: string) => {
   const ref = doc(db, "persona", key);
   await deleteDoc(ref);
 };

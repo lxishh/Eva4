@@ -22,14 +22,14 @@ export const menu = () => {
                 action
                 onClick={() => router.push("/menu/rSocio")}
               >
-                Registrar nuevo socio
+                Registrar nuevo socio NotCo
               </ListGroup.Item>
 
               <ListGroup.Item
                 action
-                onClick={() => router.push("/menu/tablaSocios")}
+                onClick={() => router.push("/menu/registros/tablaSocios")}
               >
-                Visualizar registros de socios
+                Visualizar registros de socios NotCo
               </ListGroup.Item>
 
               <ListGroup.Item action onClick={() => router.push("/")}>
