@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "eva4-6f8b9"
+  },
+  "targets": {
+    "eva4-6f8b9": {
+      "hosting": {
+        "testvideo-2910": [
+          "testvideo-2910"
+        ]
+      }
+    }
+  }
+}
